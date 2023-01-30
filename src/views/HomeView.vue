@@ -35,8 +35,14 @@
             </div>
         </div>
 
-        <ChatView class="mt-[100px]" />
+        <div v-if="showFindFriends">
+            <ChatView class="mt-[100px]" />
+        </div>
 
+        <div v-else>
+            <FindfriendsView class="pt-28"/>
+        </div>
+        
         <div v-if="open">
             <MessageView/>
         </div>
@@ -46,14 +52,14 @@
                 <div class="grid h-screen place-items-center">
                     <div>
                         <div class="w-full flex items-center justify-center">
-                            <img src="../assets/dell-SGY0LIfTKZ4-unsplash.jpg" width="375" />
+                            <img src="../assets/yell-empty-states-800.gif" width="375" />
                         </div>
                         <div class="text-[32px] text-gray-500 font-light mt-10">
-                            whatsapp web
+                           No messages
                         </div>
                         <div class="text-[15px] text-gray-500 mt-2">
                             <div>
-                                Send messages
+                                Send a message
                             </div>
                             <div>
                                 Link devices
@@ -68,13 +74,15 @@
 
 <script setup>
 import ChatView from './ChatView.vue'
+import FindfriendsView from './FindFriendsView.vue'
 import MessageView from './MessageView.vue'
 import AccountGroupIcon from 'vue-material-design-icons/AccountGroup.vue'
 import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue'
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 import { ref } from 'vue'
 
-let open = ref(true)
+let open = ref(true);
+let showFindFriends = ref(false)
 </script>
 
 <style lang="scss" scoped>
