@@ -3,11 +3,11 @@
         <div class="fixed w-[420px] z-10">
 
             <div class="bg-[#f0f0f0] w-full flex justify-between items-center px-3 py-3">
-                <img src="../assets/dell-SGY0LIfTKZ4-unsplash.jpg" class="rounded-full ml-1 w-10" />
+                <img :src="useUserStore.picture || ''" class="rounded-full ml-1 w-10" />
                 <h1 class="flex items-center justify-center"> Chat </h1>
                 <div class="flex items-center justify-center">
                     <AccountGroupIcon fillColor="#515151" class="mr-6"/>
-                    <DotsVerticalIcon fillColor="#515151" class="cursor-pointer"/>
+                    <DotsVerticalIcon @click="logout" fillColor="#515151" class="cursor-pointer"/>
                 </div>
             </div>
 
@@ -81,8 +81,20 @@ import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue'
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 import { ref } from 'vue'
 
+import { useUserStore } from '../store/user-store'
+
+const userStore = useUserStore();
+
 let open = ref(true);
-let showFindFriends = ref(false)
+let showFindFriends = ref(false);
+
+const logout = () => {
+    let res = confirm('Are you sure?')
+    if(res) {
+        userStore.logout()
+    }
+}
+
 </script>
 
 <style lang="scss" scoped>

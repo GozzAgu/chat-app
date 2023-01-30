@@ -26,8 +26,16 @@
 </template>
 
 <script setup>
-const callback = (response) => {
-    console.log(response)
+import { useUserStore } from '../store/user-store'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const userStore = useUserStore();
+const callback = async (response) => {
+    await userStore.getUserDetailsFromGoogle(response)
+    setTimeout(() => {
+        router.push('/')
+    }, 200)
 }
 </script>
 
